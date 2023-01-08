@@ -17,7 +17,7 @@ export default class AlreadyExistException extends Exception {
     super(message, 400)
   }
   public async handle(error: this, { response }: HttpContextContract) {
-    return response.notFound({
+    return response.badRequest({
       success: false,
       type: 'https://tools.ietf.org/html/rfc7231#section-6.5.4',
       title: 'The specified resource already exist',
