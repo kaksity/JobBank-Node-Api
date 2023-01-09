@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import GenericModel from 'App/Models/GenericModel'
 import User from 'App/Models/User'
+import Lga from 'App/Models/Lga'
 
 export default class Profile extends GenericModel {
   
@@ -52,4 +53,7 @@ export default class Profile extends GenericModel {
 
   @belongsTo(() => User)
   user: BelongsTo<typeof User>
+
+  @belongsTo(() => Lga)
+  lga: BelongsTo<typeof Lga>
 }
