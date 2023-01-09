@@ -6,6 +6,7 @@ import {
   USER_ACCOUNT_CREATED,
   USER_DOES_NOT_EXIST,
   USER_ACCOUNT_NOT_ACTIVE,
+  USER_ACCOUNT_LOGGED_IN,
 } from 'App/Helpers/GeneralPurpose/CustomMessages/UserMessages'
 import UserService from 'App/Services/UserService'
 import UserObjectInterface from 'App/TypeChecking/ModelManagement/UserObjectInterface'
@@ -115,10 +116,10 @@ export default class AuthController {
       phone_number: user!.profile.phoneNumber,
       access_token: accessToken,
     }
-    return response.created({
+    return response.json({
       success: true,
-      status_code: 201,
-      message: USER_ACCOUNT_CREATED,
+      status_code: 200,
+      message: USER_ACCOUNT_LOGGED_IN,
       result: userLoginResponsePayload,
     })
   }
