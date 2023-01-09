@@ -2,15 +2,19 @@ import { inject } from '@adonisjs/core/build/standalone'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
+import { USER_ALREADY_EXIST, USER_ACCOUNT_CREATED } from 'App/Helpers/GeneralPurpose/CustomMessages/UserMessages'
 import UserService from 'App/Services/UserService'
 import UserObjectInterface from 'App/TypeChecking/ModelManagement/UserObjectInterface'
 import RegisterValidator from 'App/Validators/V1/User/Auth/RegisterValidator'
 import { DateTime } from 'luxon'
+import Env from '@ioc:Adonis/Core/Env'
+import ProfileObjectInterface from 'App/TypeChecking/ModelManagement/ProfileObjectInterface'
+import ProfileService from 'App/Services/ProfileService'
 
 @inject()
 export default class AuthController {
-  constructor(private userService: UserService) {}
-  public async register({ request, response }: HttpContextContract) {
+  constructor(private userService: UserService, private profileService: ProfileService) {}
+  public async register({ request, response, auth }: HttpContextContract) {
     await request.validate(RegisterValidator)
 
     const {
@@ -22,30 +26,53 @@ export default class AuthController {
     } = request.body()
 
     // Check if a user already exist
-    const user = await this.userService.checkIfUserExist({ phoneNumber, emailAddress })
+    let user = await this.userService.checkIfUserExist({ phoneNumber, emailAddress })
 
     if (user) {
-      throw new AlreadyExistException('User Account already exist')
+      throw new AlreadyExistException(USER_ALREADY_EXIST)
     }
 
     //Create a new user
     const userCreationOptions: Partial<UserObjectInterface> = {
-      firstName,
-      lastName,
-      phoneNumber,
       emailAddress,
       password,
       lastLoginDate: DateTime.now(),
     }
-
     await Database.transaction(async (transaction) => {
       userCreationOptions.transaction = transaction
-      await this.userService.createUserRecord(userCreationOptions)
+
+      user = await this.userService.createUserRecord(userCreationOptions)
+      const profileCreationOption: Partial<ProfileObjectInterface> = {
+        userId: user.id,
+        firstName,
+        lastName,
+        phoneNumber,
+        transaction
+      }
+      await this.profileService.createProfileRecord(profileCreationOption)
     })
+
+    user = await this.userService.getUserByEmailAddress(emailAddress)
+
+    const accessToken = await auth.use('api').attempt(emailAddress, password, {
+      expiresIn: `${Env.get('TOKEN_EXPIRATION_DURATION_IN_MINUTES')} minutes`
+    })
+
+    const createUserResponsePayload = {
+      identifier: user!.identifier,
+      first_name: user!.profile!.firstName,
+      last_name: user!.profile!.lastName,
+      email_address: user!.emailAddress,
+      phone_number: user!.phoneNumber,
+      access_token: accessToken,
+      created_at: user!.createdAt,
+    }
 
     return response.created({
       success: true,
-      message: 'User Account was created successfully',
+      status_code: 201,
+      message: USER_ACCOUNT_CREATED,
+      result: createUserResponsePayload
     })
   }
 }

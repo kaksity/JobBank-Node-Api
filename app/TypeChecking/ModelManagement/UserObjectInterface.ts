@@ -7,25 +7,10 @@ interface UserObjectInterface {
    */
   id: string
   /**
-   * User Public Identifier
-   */
-  identifier: string
-  /**
-   * User First Name
-   */
-  firstName: string
-  /**
-   * User Last Name
-   */
-  lastName: string
-  /**
    * User Email Address
    */
   emailAddress: string
-  /**
-   * User Phone Number
-   */
-  phoneNumber: string
+
   /**
    * User Password
    */
