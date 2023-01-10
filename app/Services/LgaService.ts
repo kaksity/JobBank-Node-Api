@@ -4,7 +4,7 @@ export default class LgaService {
         return Lga.query().where('is_deleted', false).where('id', id).first()
     }
     public async getLgaByIdentifier(identifier: string): Promise<Lga | null> {
-        return Lga.query().where('is_deleted', false).where('id', identifier).first()
+        return Lga.query().where('is_deleted', false).where('identifier', identifier).first()
     }
     public async getLgas(): Promise<Lga[]> {
         return Lga.query().where('is_deleted', false)

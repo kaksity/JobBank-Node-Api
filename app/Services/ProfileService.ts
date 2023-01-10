@@ -1,6 +1,7 @@
 import { NULL_OBJECT } from 'App/Helpers/GeneralPurpose/CustomMessages/GenericMessages'
 import Profile from 'App/Models/Profile'
 import ProfileObjectInterface from 'App/TypeChecking/ModelManagement/ProfileObjectInterface'
+import UpdateRecordPayloadOptions from 'App/TypeChecking/GeneralPurpose/UpdateRecordPayloadOptions'
 
 export default class ProfileService {
     /**
@@ -61,5 +62,28 @@ export default class ProfileService {
             return profile
         }
         return NULL_OBJECT
+    }
+
+    public async updateProfileRecord(updateRecordPayloadOptions: UpdateRecordPayloadOptions): Promise<void> {
+        const { identifierType = 'id', entityId, modifiedData, transaction } = updateRecordPayloadOptions
+        if(identifierType === 'identifier') {
+            const recordByIdentifier = await this.getProfileByIdentifier(String(entityId))
+            
+            recordByIdentifier!.merge(modifiedData)
+            
+            if(transaction) {
+                recordByIdentifier!.useTransaction(transaction)
+            }
+            
+            await recordByIdentifier!.save()
+        }
+        else {
+            const recordById = await this.getProfileById(Number(entityId))
+            recordById!.merge(modifiedData)
+            if(transaction) {
+                recordById!.useTransaction(transaction)
+            }
+            await recordById!.save()
+        }
     }
 }
