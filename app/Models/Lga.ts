@@ -3,9 +3,9 @@ import GenericModel from 'App/Models//GenericModel'
 import Profile from 'App/Models/Profile'
 
 export default class Lga extends GenericModel {
-    @column()
-    public name: string
+  @column()
+  public name: string
 
-    @hasMany(() => Profile)
-    profiles: HasMany<typeof Profile>
+  @hasMany(() => Profile)
+  public profiles: HasMany<typeof Profile>
 }

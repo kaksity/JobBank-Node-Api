@@ -8,9 +8,9 @@ export default class UpdateProfileValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public refs = schema.refs({
-    genderEnum: GenderDataType.map(gender => gender.slug),
-    employmentStatusDataType: EmploymentStatusDataType.map(status => status.slug),
-    highestEducationLevelDataType: HighestEducationLevelDataType.map(level => level.slug)
+    genderEnum: GenderDataType.map((gender) => gender.slug),
+    employmentStatusDataType: EmploymentStatusDataType.map((status) => status.slug),
+    highestEducationLevelDataType: HighestEducationLevelDataType.map((level) => level.slug),
   })
 
   public schema = schema.create({
@@ -23,7 +23,7 @@ export default class UpdateProfileValidator {
     employment_status: schema.enum(this.refs.employmentStatusDataType),
     highest_education_level: schema.enum(this.refs.highestEducationLevelDataType),
     lga_identifier: schema.string([rules.trim(), rules.minLength(10)]),
-    additional_information: schema.string([rules.trim(), rules.nullable(),])
+    additional_information: schema.string([rules.trim(), rules.nullable()]),
   })
   public messages: CustomMessages = {
     'first_name.required': 'First Name is required',
@@ -48,6 +48,6 @@ export default class UpdateProfileValidator {
     'lga_identifier.required': 'Lga is required',
     'lga_identifier.minLength': 'Lga is not valid',
     'additional_information.required': 'Additional Information is required',
-    'additional_information.nullable': 'Additional Information should be set null if not required'
+    'additional_information.nullable': 'Additional Information should be set null if not required',
   }
 }

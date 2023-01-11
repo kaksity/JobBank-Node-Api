@@ -83,10 +83,10 @@ export default class UserService {
 
   public async createUserRecord(userCreationOptions: Partial<UserObjectInterface>): Promise<User> {
     const user = new User()
-    
+
     Object.assign(user, userCreationOptions)
 
-    if(userCreationOptions.transaction) {
+    if (userCreationOptions.transaction) {
       user.useTransaction(userCreationOptions.transaction)
       await user.save()
     }

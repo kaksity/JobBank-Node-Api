@@ -1,0 +1,5 @@
+export const WORK_EXPERIENCE_CREATED_SUCCESSFULLY = 'Work Experience was created successfully'
+export const WORK_EXPERIENCE_FETCHED_SUCCESSFULLY = 'Work Experiences was fetched successfully'
+export const WORK_EXPERIENCE_DELETED_SUCCESSFULLY = 'Work Experience was deleted successfully'
+export const WORK_EXPERIENCE_DOES_NOT_EXIST = 'Work Experience does not exist'
+export const WORK_EXPERIENCE_CANNOT_BE_DELETED = 'Work Experience cannot be deleted'
