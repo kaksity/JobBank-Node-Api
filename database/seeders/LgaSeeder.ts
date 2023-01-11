@@ -3,89 +3,89 @@ import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
 import Lga from 'App/Models/Lga'
 
 export default class extends BaseSeeder {
-  public async run () {
+  public async run() {
     const lgas = [
       {
-        'name': 'Abadam'
+        name: 'Abadam',
       },
       {
-        'name': 'Askira/Uba'
+        name: 'Askira/Uba',
       },
       {
-        'name': 'Bama'
+        name: 'Bama',
       },
       {
-        'name': 'Bayo'
+        name: 'Bayo',
       },
       {
-        'name': 'Biu'
+        name: 'Biu',
       },
       {
-        'name': 'Chibok'
+        name: 'Chibok',
       },
       {
-        'name': 'Damboa'
+        name: 'Damboa',
       },
       {
-        'name': 'Dikwa'
+        name: 'Dikwa',
       },
       {
-        'name': 'Gubio'
+        name: 'Gubio',
       },
       {
-        'name': 'Guzamala'
+        name: 'Guzamala',
       },
       {
-        'name': 'Gwoza'
+        name: 'Gwoza',
       },
       {
-        'name': 'Hawul'
+        name: 'Hawul',
       },
       {
-        'name': 'Jere'
+        name: 'Jere',
       },
       {
-        'name': 'Kaga'
+        name: 'Kaga',
       },
       {
-          'name': 'Kala/Balge'
+        name: 'Kala/Balge',
       },
       {
-          'name': 'Konduga'
+        name: 'Konduga',
       },
       {
-        'name': 'Kukawa'
+        name: 'Kukawa',
       },
       {
-        'name': 'Kwaya Kusar'
+        name: 'Kwaya Kusar',
       },
       {
-        'name': 'Mafa'
+        name: 'Mafa',
       },
       {
-        'name': 'Magumeri'
+        name: 'Magumeri',
       },
       {
-        'name': 'Maiduguri'
+        name: 'Maiduguri',
       },
       {
-        'name': 'Marte'
+        name: 'Marte',
       },
       {
-        'name': 'Mobbar'
+        name: 'Mobbar',
       },
       {
-        'name': 'Monguno'
+        name: 'Monguno',
       },
       {
-        'name': 'Ngala'
+        name: 'Ngala',
       },
       {
-        'name': 'Nganzai'
+        name: 'Nganzai',
       },
       {
-        'name': 'Shani'
-      }
+        name: 'Shani',
+      },
     ]
     // Write your database queries inside the run method
     Database.raw('SET FOREIGN_KEY_CHECKS = 0;')

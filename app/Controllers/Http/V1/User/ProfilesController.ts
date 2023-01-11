@@ -3,9 +3,16 @@ import { RECORDS_FOUND } from 'App/Helpers/GeneralPurpose/GeneralMessages'
 import ProfileService from 'App/Services/ProfileService'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import NotFoundException from 'App/Exceptions/NotFoundException'
-import { LGA_RECORD_DOES_NOT_EXIST, NULL_OBJECT } from 'App/Helpers/GeneralPurpose/CustomMessages/GenericMessages'
+import {
+  LGA_DOES_NOT_EXIST,
+  NULL_OBJECT,
+} from 'App/Helpers/GeneralPurpose/CustomMessages/GenericMessages'
 import BadRequestException from 'App/Exceptions/BadRequestException'
-import { PROFILE_NOT_FOUND, PROFILE_CANNOT_BE_UPDATED, PROFILE_UPDATED_SUCCESSFULLY } from 'App/Helpers/GeneralPurpose/CustomMessages/ProfileMessages'
+import {
+  PROFILE_NOT_FOUND,
+  PROFILE_CANNOT_BE_UPDATED,
+  PROFILE_UPDATED_SUCCESSFULLY,
+} from 'App/Helpers/GeneralPurpose/CustomMessages/ProfileMessages'
 import UpdateRecordPayloadOptions from 'App/TypeChecking/GeneralPurpose/UpdateRecordPayloadOptions'
 import UpdateProfileValidator from 'App/Validators/V1/User/Profile/UpdateProfileValidator'
 import LgaService from 'App/Services/LgaService'
@@ -14,7 +21,6 @@ import LgaService from 'App/Services/LgaService'
 export default class ProfilesController {
   constructor(private profileService: ProfileService, private lgaService: LgaService) {}
   public async index({ request, auth, response }: HttpContextContract) {
-    
     const profile = await this.profileService.getProfileByUserId(auth.user!.id)
 
     const userResponsePayload = {
@@ -37,7 +43,7 @@ export default class ProfilesController {
       success: true,
       status_code: 200,
       message: RECORDS_FOUND,
-      result: userResponsePayload
+      result: userResponsePayload,
     })
   }
 
@@ -47,21 +53,21 @@ export default class ProfilesController {
     const { lga_identifier: lgaIdentifier } = request.body()
 
     const lga = await this.lgaService.getLgaByIdentifier(lgaIdentifier)
-    
-    if(lga === NULL_OBJECT) {
-      throw new NotFoundException(LGA_RECORD_DOES_NOT_EXIST)
+
+    if (lga === NULL_OBJECT) {
+      throw new NotFoundException(LGA_DOES_NOT_EXIST)
     }
-    
+
     const profile = await this.profileService.getProfileByIdentifier(params.id)
-    
-    if(profile === NULL_OBJECT) {
+
+    if (profile === NULL_OBJECT) {
       throw new NotFoundException(PROFILE_NOT_FOUND)
     }
-    if(profile.userId != auth.user!.id) {
+    if (profile.userId !== auth.user!.id) {
       throw new BadRequestException(PROFILE_CANNOT_BE_UPDATED)
     }
-    
-    const { 
+
+    const {
       first_name: firstName,
       last_name: lastName,
       phone_number: phoneNumber,
@@ -70,13 +76,13 @@ export default class ProfilesController {
       employment_status: employmentStatus,
       dob,
       highest_education_level: highestEducationLevel,
-      additional_information: additionalInfo
+      additional_information: additionalInfo,
     } = request.body()
 
     const profileUpdatePayloadOptions: UpdateRecordPayloadOptions = {
       identifierType: 'identifier',
       entityId: params.id,
-      modifiedData : {
+      modifiedData: {
         firstName,
         lastName,
         phoneNumber,
@@ -86,18 +92,18 @@ export default class ProfilesController {
         dob,
         highestEducationLevel,
         lgaId: lga.id,
-        additionalInfo
+        additionalInfo,
       },
-      transaction: undefined
+      transaction: undefined,
     }
-    
+
     await this.profileService.updateProfileRecord(profileUpdatePayloadOptions)
 
     return response.json({
       success: true,
       status_code: 200,
       message: PROFILE_UPDATED_SUCCESSFULLY,
-      result: {}
+      result: {},
     })
   }
 }

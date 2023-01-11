@@ -3,7 +3,7 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class extends BaseSchema {
   protected tableName = 'profiles'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('identifier').index()
@@ -22,7 +22,7 @@ export default class extends BaseSchema {
       table.boolean('is_educated').nullable()
       table.string('highest_education_level').nullable()
       table.boolean('is_profile_completed').nullable()
-      
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
@@ -31,7 +31,7 @@ export default class extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

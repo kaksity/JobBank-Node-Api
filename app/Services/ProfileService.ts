@@ -32,10 +32,10 @@ export default class ProfileService {
    */
   public async getProfileById(id: number): Promise<Profile | null> {
     const profile = await Profile.query().where('id', id).first()
-    if (profile) {
-      return profile
+    if (profile === NULL_OBJECT) {
+      return NULL_OBJECT
     }
-    return NULL_OBJECT
+    return profile
   }
   /**
    * @description
@@ -46,10 +46,10 @@ export default class ProfileService {
    */
   public async getProfileByIdentifier(identifier: string): Promise<Profile | null> {
     const profile = await Profile.query().where('identifier', identifier).first()
-    if (profile) {
-      return profile
+    if (profile === NULL_OBJECT) {
+      return NULL_OBJECT
     }
-    return NULL_OBJECT
+    return profile
   }
   /**
    * @description
@@ -60,10 +60,10 @@ export default class ProfileService {
    */
   public async getProfileByUserId(userId: number): Promise<Profile | null> {
     const profile = await Profile.query().where('user_id', userId).first()
-    if (profile) {
-      return profile
+    if (profile === NULL_OBJECT) {
+      return NULL_OBJECT
     }
-    return NULL_OBJECT
+    return profile
   }
 
   public async updateProfileRecord(

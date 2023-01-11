@@ -1,5 +1,5 @@
-import { TransactionClientContract } from "@ioc:Adonis/Lucid/Database"
-import { DateTime } from "luxon"
+import { TransactionClientContract } from '@ioc:Adonis/Lucid/Database'
+import { DateTime } from 'luxon'
 
 interface UserObjectInterface {
   /**
@@ -18,7 +18,7 @@ interface UserObjectInterface {
   /**
    * User Last Login Date
    */
-   lastLoginDate: DateTime
+  lastLoginDate: DateTime
   /**
    * User Active Status
    */

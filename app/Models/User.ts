@@ -10,8 +10,8 @@ export default class User extends GenericModel {
   public password: string
 
   @hasOne(() => Profile)
-  profile: HasOne<typeof Profile>
-  
+  public profile: HasOne<typeof Profile>
+
   @beforeSave()
   public static async hashPassword(user: User) {
     if (user.$dirty.password) {

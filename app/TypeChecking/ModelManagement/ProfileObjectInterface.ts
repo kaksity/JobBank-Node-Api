@@ -5,23 +5,23 @@ interface ProfileObjectInterface {
   /**
    * Profile Primary Key
    */
-    id: number
-    
-    /**
-     * Profile Public Identifier
-     */
-    identifier: string
+  id: number
 
-    /**
-     * Profile User Id
-     */
+  /**
+   * Profile Public Identifier
+   */
+  identifier: string
+
+  /**
+   * Profile User Id
+   */
   userId: number
   /**
    * Profile LGA
    */
-  
+
   lgaId: number
-  
+
   /**
    * Profile First Name
    */
@@ -42,42 +42,42 @@ interface ProfileObjectInterface {
    * Profile Date of Birth
    */
   dob: DateTime
-  
+
   /**
    * Profile Contact Address
    */
   contactAddress: string
-  
+
   /**
    * Profile Employment Status
    */
   employmentStatus: string
-  
+
   /**
    * Profile Additional Information
    */
   additionalInfo: string
-  
+
   /**
    * Profile Avatar File Name
    */
   avatarFileName: string
-  
+
   /**
    * Profile Avatar Url
    */
   avatarUrl: string
-  
+
   /**
    * Profile Is Educated
    */
   isEducated: boolean
-  
+
   /**
    * Profile Highest Education Level
    */
   highestEducationLevel: string
-  
+
   /**
    * Profile Is Profile Completed
    */

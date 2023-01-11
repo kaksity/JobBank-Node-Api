@@ -6,17 +6,17 @@ import SkillService from 'App/Services/SkillService'
 
 @inject()
 export default class SkillsController {
-    constructor(private skillService: SkillService){}
-    public async index({ response }: HttpContextContract) {
-        const skills = await this.skillService.getSkills()
+  constructor(private skillService: SkillService) {}
+  public async index({ response }: HttpContextContract) {
+    const skills = await this.skillService.getSkills()
 
-        const skillResponsePayload = SkillResource.collection(skills)
+    const skillResponsePayload = SkillResource.collection(skills)
 
-        return response.json({
-            success: true,
-            message: RECORDS_FOUND,
-            status_code: 200,
-            result: skillResponsePayload
-        })
-    }
+    return response.json({
+      success: true,
+      message: RECORDS_FOUND,
+      status_code: 200,
+      result: skillResponsePayload,
+    })
+  }
 }

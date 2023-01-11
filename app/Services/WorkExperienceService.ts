@@ -76,23 +76,25 @@ export default class WorkExperienceService {
    * @returns {*}  {Promise<void>}
    * @memberof WorkExperienceService
    */
-  public async deleteWorkExperienceRecord(deleteRecordPayloadOptions: DeleteRecordPayloadOptions): Promise<void> {
+  public async deleteWorkExperienceRecord(
+    deleteRecordPayloadOptions: DeleteRecordPayloadOptions
+  ): Promise<void> {
     const { identifierType = 'id', entityId, transaction } = deleteRecordPayloadOptions
-    if(identifierType === 'identifier'){
+    if (identifierType === 'identifier') {
       const recordByIdentifier = await this.getWorkExperienceByIdentifier(String(entityId))
       recordByIdentifier!.merge({
-        isDeleted: true
+        isDeleted: true,
       })
-      if(transaction) {
+      if (transaction) {
         recordByIdentifier!.useTransaction(transaction)
       }
       recordByIdentifier!.save()
-    }else {
+    } else {
       const recordById = await this.getWorkExperienceById(Number(entityId))
       recordById!.merge({
-        isDeleted: true
+        isDeleted: true,
       })
-      if(transaction) {
+      if (transaction) {
         recordById!.useTransaction(transaction)
       }
       recordById!.save()

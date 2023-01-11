@@ -1,0 +1,5 @@
+export const SKILL_SET_CREATED_SUCCESSFULLY = 'Skill Set was created successfully'
+export const SKILL_SET_DELETED_SUCCESSFULLY = 'Skill Set was deleted successfully'
+export const SKILL_SET_DOES_NOT_EXIST = 'Skill Set does not exist'
+export const SKILL_SET_FETCHED_SUCCESSFULLY = 'Skill Sets was fetched successfully'
+export const SKILL_SET_CANNOT_BE_DELETED = 'Skill Set cannot be deleted'

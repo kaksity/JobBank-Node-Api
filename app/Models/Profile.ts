@@ -5,7 +5,6 @@ import User from 'App/Models/User'
 import Lga from 'App/Models/Lga'
 
 export default class Profile extends GenericModel {
-  
   @column()
   public userId: number
 
@@ -20,7 +19,7 @@ export default class Profile extends GenericModel {
 
   @column()
   public phoneNumber: string
-  
+
   @column()
   public gender: string
 
@@ -52,8 +51,8 @@ export default class Profile extends GenericModel {
   public isProfileCompleted: boolean
 
   @belongsTo(() => User)
-  user: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>
 
   @belongsTo(() => Lga)
-  lga: BelongsTo<typeof Lga>
+  public lga: BelongsTo<typeof Lga>
 }

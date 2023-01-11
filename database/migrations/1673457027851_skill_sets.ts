@@ -1,14 +1,15 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'skills'
+  protected tableName = 'skill_sets'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.string('identifier')
-      table.string('name')
-      table.boolean('is_deleted').notNullable().defaultTo(false)
+      table.bigInteger('user_id').index()
+      table.bigInteger('skill_id').index()
+      table.string('identifier').index()
+      table.boolean('is_deleted').defaultTo(false)
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
