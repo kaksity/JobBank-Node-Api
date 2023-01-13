@@ -74,11 +74,6 @@ interface ProfileObjectInterface {
   isEducated: boolean
 
   /**
-   * Profile Highest Education Level
-   */
-  highestEducationLevel: string
-
-  /**
    * Profile Is Profile Completed
    */
   isProfileCompleted: boolean

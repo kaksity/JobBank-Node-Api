@@ -10,7 +10,6 @@ export default class UpdateProfileValidator {
   public refs = schema.refs({
     genderEnum: GenderDataType.map((gender) => gender.slug),
     employmentStatusDataType: EmploymentStatusDataType.map((status) => status.slug),
-    highestEducationLevelDataType: HighestEducationLevelDataType.map((level) => level.slug),
   })
 
   public schema = schema.create({
@@ -21,7 +20,6 @@ export default class UpdateProfileValidator {
     gender: schema.enum(this.refs.genderEnum),
     dob: schema.date({ format: 'yyyy-MM-dd' }),
     employment_status: schema.enum(this.refs.employmentStatusDataType),
-    highest_education_level: schema.enum(this.refs.highestEducationLevelDataType),
     lga_identifier: schema.string([rules.trim(), rules.minLength(10)]),
     additional_information: schema.string([rules.trim(), rules.nullable()]),
   })
@@ -43,8 +41,6 @@ export default class UpdateProfileValidator {
     'employment_status.required': 'Employment Status is required',
     'employment_status.enum': 'Employment Status is not valid',
     'dob.required': 'Date of Birth is required',
-    'highest_education_level.required': 'Highest Education Level is required',
-    'highest_education_level.enum': 'Highest Education Level is not valid',
     'lga_identifier.required': 'Lga is required',
     'lga_identifier.minLength': 'Lga is not valid',
     'additional_information.required': 'Additional Information is required',

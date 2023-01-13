@@ -47,7 +47,11 @@ export default class SkillSetService {
    * @memberof SkillSetService
    */
   public async getSkillSetById(id: number): Promise<SkillSet | null> {
-    const skill = await SkillSet.query().preload('skill').where('is_deleted', false).where('id', id).first()
+    const skill = await SkillSet.query()
+      .preload('skill')
+      .where('is_deleted', false)
+      .where('id', id)
+      .first()
 
     if (skill === NULL_OBJECT) {
       return NULL_OBJECT

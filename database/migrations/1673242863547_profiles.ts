@@ -20,7 +20,7 @@ export default class extends BaseSchema {
       table.string('avatar_file_name').nullable()
       table.string('avatar_url').nullable()
       table.boolean('is_educated').nullable()
-      table.string('highest_education_level').nullable()
+      table.bigint('highest_education_level_id').index().nullable()
       table.boolean('is_profile_completed').nullable()
 
       /**

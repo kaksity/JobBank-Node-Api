@@ -45,9 +45,6 @@ export default class Profile extends GenericModel {
   public isEducated: boolean
 
   @column()
-  public highestEducationLevel: string
-
-  @column()
   public isProfileCompleted: boolean
 
   @belongsTo(() => User)

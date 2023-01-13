@@ -36,7 +36,6 @@ export default class ProfilesController {
       avatar_file_name: profile?.avatarFileName ?? 'N/A',
       avatar_url: profile?.avatarUrl ?? 'N/A',
       is_educated: profile?.isEducated ?? 'N/A',
-      highest_education_level: profile?.highestEducationLevel ?? 'N/A',
       is_profile_completed: profile?.isProfileCompleted ?? 'N/A',
     }
     return response.json({
@@ -75,7 +74,6 @@ export default class ProfilesController {
       gender,
       employment_status: employmentStatus,
       dob,
-      highest_education_level: highestEducationLevel,
       additional_information: additionalInfo,
     } = request.body()
 
@@ -90,7 +88,6 @@ export default class ProfilesController {
         gender,
         employmentStatus,
         dob,
-        highestEducationLevel,
         lgaId: lga.id,
         additionalInfo,
       },
