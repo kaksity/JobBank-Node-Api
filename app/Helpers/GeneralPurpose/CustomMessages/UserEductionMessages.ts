@@ -1,0 +1,5 @@
+export const USER_EDUCATION_FETCHED_SUCCESSFULLY = 'User Education was fetched successfully'
+export const USER_EDUCATION_CREATED_SUCCESSFULLY = 'User Education was created successfully'
+export const USER_EDUCATION_DOES_NOT_EXIST = 'User Education does not exist'
+export const USER_EDUCATION_DELETED_SUCCESSFULLY = 'User Education was deleted successfully'
+export const USER_EDUCATION_CANNOT_BE_DELETED = 'User Education cannot be deleted'

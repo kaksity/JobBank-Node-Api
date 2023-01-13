@@ -3,6 +3,7 @@ Route.group(function () {
   Route.resource('/profiles', 'ProfilesController')
   Route.resource('/work-experiences', 'WorkExperiencesController')
   Route.resource('skill-sets', 'SkillSetsController')
+  Route.resource('educations', 'UserEducationsController')
 })
   .middleware(['auth'])
   .prefix('/api/v1/users')
