@@ -16,6 +16,7 @@ import {
 import UpdateRecordPayloadOptions from 'App/TypeChecking/GeneralPurpose/UpdateRecordPayloadOptions'
 import UpdateProfileValidator from 'App/Validators/V1/User/Profile/UpdateProfileValidator'
 import LgaService from 'App/Services/LgaService'
+import LgaResource from 'App/Resources/V1/General/LgaResource'
 
 @inject()
 export default class ProfilesController {
@@ -30,6 +31,7 @@ export default class ProfilesController {
       phone_number: profile?.phoneNumber,
       gender: profile?.gender ?? 'N/A',
       dob: profile?.dob ?? 'N/A',
+      lga: profile?.lga ? LgaResource.single(profile!.lga) : 'N/A',
       contact_address: profile?.contactAddress ?? 'N/A',
       employment_status: profile?.employmentStatus ?? 'N/A',
       additional_info: profile?.additionalInfo ?? 'N/A',

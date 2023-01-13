@@ -31,7 +31,7 @@ export default class ProfileService {
    * @memberof ProfileService
    */
   public async getProfileById(id: number): Promise<Profile | null> {
-    const profile = await Profile.query().where('id', id).first()
+    const profile = await Profile.query().where('id', id).preload('lga').first()
     if (profile === NULL_OBJECT) {
       return NULL_OBJECT
     }
@@ -45,7 +45,7 @@ export default class ProfileService {
    * @memberof ProfileService
    */
   public async getProfileByIdentifier(identifier: string): Promise<Profile | null> {
-    const profile = await Profile.query().where('identifier', identifier).first()
+    const profile = await Profile.query().where('identifier', identifier).preload('lga').first()
     if (profile === NULL_OBJECT) {
       return NULL_OBJECT
     }
@@ -59,7 +59,7 @@ export default class ProfileService {
    * @memberof ProfileService
    */
   public async getProfileByUserId(userId: number): Promise<Profile | null> {
-    const profile = await Profile.query().where('user_id', userId).first()
+    const profile = await Profile.query().where('user_id', userId).preload('lga').first()
     if (profile === NULL_OBJECT) {
       return NULL_OBJECT
     }
