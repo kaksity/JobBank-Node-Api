@@ -16,7 +16,7 @@ import Hash from '@ioc:Adonis/Core/Hash'
 @inject()
 export default class AuthController {
   constructor(private userService: UserService) {}
-  
+
   public async login({ request, response, auth }: HttpContextContract) {
     await request.validate(LoginValidator)
 

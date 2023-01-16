@@ -1,6 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, BelongsTo, belongsTo } from '@ioc:Adonis/Lucid/Orm';
 import GenericModel from 'App/Models/GenericModel'
+import User from 'App/Models/User'
+
 export default class WorkExperience extends GenericModel {
   @column()
   public userId: number
@@ -25,4 +27,7 @@ export default class WorkExperience extends GenericModel {
 
   @column()
   public additionalInfo: string
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 }

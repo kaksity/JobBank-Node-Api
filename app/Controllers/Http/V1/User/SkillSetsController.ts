@@ -34,7 +34,7 @@ export default class SkillSetsController {
     return response.json({
       success: true,
       message: SKILL_SET_FETCHED_SUCCESSFULLY,
-      status_code: 201,
+      status_code: 200,
       result: skillSetResponsePayload,
     })
   }
@@ -62,7 +62,7 @@ export default class SkillSetsController {
     return response.created({
       success: true,
       message: SKILL_SET_CREATED_SUCCESSFULLY,
-      status_code: 201,
+      status_code: 200,
       result: {},
     })
   }

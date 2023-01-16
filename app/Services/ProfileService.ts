@@ -65,7 +65,13 @@ export default class ProfileService {
     }
     return profile
   }
-
+  /**
+   * @description
+   * @author Dauda Pona
+   * @param {UpdateRecordPayloadOptions} updateRecordPayloadOptions
+   * @returns {*}  {Promise<void>}
+   * @memberof ProfileService
+   */
   public async updateProfileRecord(
     updateRecordPayloadOptions: UpdateRecordPayloadOptions
   ): Promise<void> {
@@ -93,5 +99,15 @@ export default class ProfileService {
       }
       await recordById!.save()
     }
+  }
+  public async getProfileByUserIdentifier(userIdentifier: string): Promise<Profile | null> {
+    const profile = await Profile.query().whereHas('user', (userQuery) => {
+      userQuery.where('identifier', userIdentifier).where('is_deleted', false)
+    }).preload('lga').first()
+    
+    if (profile === NULL_OBJECT) {
+      return NULL_OBJECT
+    }
+    return profile    
   }
 }

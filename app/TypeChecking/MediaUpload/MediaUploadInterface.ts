@@ -1,12 +1,11 @@
 interface MediaUploadInterface {
+  uploadToDisk: Function
 
-    uploadToDisk: Function
+  uploadToCloud: Function
 
-    uploadToCloud: Function
+  upload: Function
 
-    upload: Function
-
-    currentProvider: string
+  currentProvider: string
 }
 
 export default MediaUploadInterface

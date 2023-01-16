@@ -39,6 +39,15 @@ export default class SkillSetService {
       .where('user_id', userId)
       .orderBy('created_at', 'asc')
   }
+  public async getSkillSetByUserIdentifier(userIdentifier: string): Promise<SkillSet[]> {
+    return await SkillSet.query()
+      .whereHas('user', (userQuery) => {
+        userQuery.where('identifier', userIdentifier).where('is_deleted', false)
+      })
+      .preload('skill')
+      .where('is_deleted', false)
+      .orderBy('created_at', 'asc')
+  }
   /**
    * @description
    * @author Dauda Pona

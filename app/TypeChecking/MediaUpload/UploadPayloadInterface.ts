@@ -1,8 +1,8 @@
 interface UploadPayloadInterface {
-    uploadedFile: any,
-    storageFolder?: string
-    customFileName?: string
-    replaceOriginalName?: boolean
+  uploadedFile: any
+  storageFolder?: string
+  customFileName?: string
+  replaceOriginalName?: boolean
 }
 
 export default UploadPayloadInterface

@@ -1,6 +1,6 @@
 type InfrastructureProviderGeneratorOptionType = {
-    identifierProvider: string,
-    fetchCurrentProvider: Function
+  identifierProvider: string
+  fetchCurrentProvider: Function
 }
 
 export default InfrastructureProviderGeneratorOptionType

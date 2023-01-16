@@ -81,6 +81,17 @@ export default class UserQualificationDocumentService {
       .preload('educationLevel')
       .orderBy('created_at', 'asc')
   }
+  public async getUserQualificationDocumentByUserIdentifier(
+    userIdentifier: string
+  ): Promise<UserQualificationDocument[]> {
+    return await UserQualificationDocument.query()
+      .whereHas('user', (userQuery) => {
+        userQuery.where('identifier', userIdentifier).where('is_deleted', false)
+      })
+      .where('is_deleted', false)
+      .preload('educationLevel')
+      .orderBy('created_at', 'asc')
+  }
   /**
    * @description
    * @author Dauda Pona

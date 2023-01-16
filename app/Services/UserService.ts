@@ -61,7 +61,13 @@ export default class UserService {
     }
     return NULL_OBJECT
   }
-
+  /**
+   * @description
+   * @author Dauda Pona
+   * @param {UserIdentifierOptionsType} userIdentifierOptionsType
+   * @returns {*}  {(Promise<User | null>)}
+   * @memberof UserService
+   */
   public async checkIfUserExist(
     userIdentifierOptionsType: UserIdentifierOptionsType
   ): Promise<User | null> {
@@ -80,7 +86,13 @@ export default class UserService {
     }
     return NULL_OBJECT
   }
-
+  /**
+   * @description
+   * @author Dauda Pona
+   * @param {Partial<UserObjectInterface>} userCreationOptions
+   * @returns {*}  {Promise<User>}
+   * @memberof UserService
+   */
   public async createUserRecord(userCreationOptions: Partial<UserObjectInterface>): Promise<User> {
     const user = new User()
 
@@ -91,5 +103,25 @@ export default class UserService {
       await user.save()
     }
     return user
+  }
+  /**
+   * @description
+   * @author Dauda Pona
+   * @param {number} [page=1]
+   * @param {number} [limit=100]
+   * @returns {*}  {Promise<{ data: User[], meta: any}>}
+   * @memberof UserService
+   */
+  public async getUsers(
+    page: number = 1,
+    limit: number = 100
+  ): Promise<{ data: User[]; meta: any }> {
+    const result = await User.query()
+      .preload('profile')
+      .where('is_deleted', false)
+      .orderBy('email_address', 'asc')
+      .paginate(page, limit)
+
+    return { data: result.all(), meta: result.getMeta() }
   }
 }

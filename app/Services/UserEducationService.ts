@@ -75,6 +75,22 @@ export default class UserEducationService {
   /**
    * @description
    * @author Dauda Pona
+   * @param {string} userIdentifier
+   * @returns {*}  {Promise<UserEducation[]>}
+   * @memberof UserEducationService
+   */
+  public async getUserEducationByUserIdentifier(userIdentifier: string): Promise<UserEducation[]> {
+    return await UserEducation.query()
+      .whereHas('user', (userQuery) => {
+        userQuery.where('identifier', userIdentifier).where('is_deleted', false)
+      })
+      .where('is_deleted', false)
+      .preload('educationLevel')
+      .orderBy('created_at', 'asc')
+  }
+  /**
+   * @description
+   * @author Dauda Pona
    * @param {DeleteRecordPayloadOptions} userEducationDeletePayloadOptions
    * @returns {*}  {Promise<void>}
    * @memberof UserEducationService

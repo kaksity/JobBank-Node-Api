@@ -4,7 +4,6 @@ import EducationLevel from 'App/Models/EducationLevel'
 import User from 'App/Models/User'
 
 export default class UserQualificationDocument extends GenericModel {
-  
   @column()
   public userId: number
 

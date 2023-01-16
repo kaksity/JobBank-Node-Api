@@ -67,7 +67,19 @@ export default class WorkExperienceService {
    * @memberof WorkExperienceService
    */
   public async getWorkExperienceByUserId(userId: number): Promise<WorkExperience[]> {
-    return WorkExperience.query().where('is_deleted', false).where('user_id', userId)
+    return WorkExperience.query().where('is_deleted', false).where('user_id', userId).orderBy('created_at', 'asc')
+  }
+  /**
+   * @description
+   * @author Dauda Pona
+   * @param {string} userIdentifier
+   * @returns {*}  {Promise<WorkExperience[]>}
+   * @memberof WorkExperienceService
+   */
+  public async getWorkExperienceByUserIdentifier(userIdentifier: string): Promise<WorkExperience[]> {
+    return WorkExperience.query().whereHas('user', (userQuery) => {
+      userQuery.where('identifier', userIdentifier).where('is_deleted', false)
+    }).orderBy('created_at', 'asc')
   }
   /**
    * @description
