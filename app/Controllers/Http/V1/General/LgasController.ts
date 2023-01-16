@@ -1,6 +1,6 @@
 import { inject } from '@adonisjs/core/build/standalone'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { RECORDS_FOUND } from 'App/Helpers/GeneralPurpose/GeneralMessages'
+import { RECORDS_FOUND } from 'App/Helpers/GeneralPurpose/CustomMessages/GeneralMessages'
 import LgaResource from 'App/Resources/V1/General/LgaResource'
 import LgaService from 'App/Services/LgaService'
 

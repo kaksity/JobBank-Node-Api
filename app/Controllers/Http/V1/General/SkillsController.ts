@@ -1,6 +1,6 @@
 import { inject } from '@adonisjs/core/build/standalone'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { RECORDS_FOUND } from 'App/Helpers/GeneralPurpose/GeneralMessages'
+import { RECORDS_FOUND } from 'App/Helpers/GeneralPurpose/CustomMessages/GeneralMessages'
 import SkillResource from 'App/Resources/V1/General/SkillResource'
 import SkillService from 'App/Services/SkillService'
 

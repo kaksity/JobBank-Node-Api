@@ -27,4 +27,8 @@ export default Env.rules({
   MYSQL_USER: Env.schema.string(),
   MYSQL_PASSWORD: Env.schema.string(),
   MYSQL_DB_NAME: Env.schema.string(),
+  CURRENT_MEDIA_UPLOAD_PROVIDER: Env.schema.string(),
+  DEFAULT_UPLOAD_DESTINATION: Env.schema.string(),
+  DISK_FILE_UPLOAD_PATH: Env.schema.string(),
+  DISK_FILE_UPLOADS_BASE_URL: Env.schema.string(),
 })

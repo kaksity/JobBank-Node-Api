@@ -1,5 +1,5 @@
 import { inject } from '@adonisjs/core/build/standalone'
-import { RECORDS_FOUND } from 'App/Helpers/GeneralPurpose/GeneralMessages'
+import { RECORDS_FOUND } from 'App/Helpers/GeneralPurpose/CustomMessages/GeneralMessages'
 import ProfileService from 'App/Services/ProfileService'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import NotFoundException from 'App/Exceptions/NotFoundException'

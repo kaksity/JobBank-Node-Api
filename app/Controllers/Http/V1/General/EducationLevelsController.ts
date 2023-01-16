@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { RECORDS_FOUND } from '../../../../Helpers/GeneralPurpose/GeneralMessages'
+import { RECORDS_FOUND } from '../../../../Helpers/GeneralPurpose/CustomMessages/GeneralMessages'
 import { inject } from '@adonisjs/core/build/standalone'
 import EducationLevelService from 'App/Services/EducationLevelService'
 import EducationLevelResource from 'App/Resources/V1/General/EducationLevelResource'

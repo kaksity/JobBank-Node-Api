@@ -1,20 +1,24 @@
-import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator';
+import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class CreateUserEducationValidator {
   public refs = schema.refs({
-    isCompleted: ['Yes', 'No']
+    isCompleted: ['Yes', 'No'],
   })
   constructor(protected ctx: HttpContextContract) {}
   public schema = schema.create({
-    school_name: schema.string([ rules.trim(), rules.minLength(3), rules.maxLength(200) ]),
-    course_name: schema.string([ rules.trim(), rules.minLength(3), rules.maxLength(200) ]),
-    grade: schema.string([ rules.trim(), rules.minLength(3), rules.maxLength(200) ]),
-    education_level_identifier: schema.string([ rules.trim() ]),
+    school_name: schema.string([rules.trim(), rules.minLength(3), rules.maxLength(200)]),
+    course_name: schema.string([rules.trim(), rules.minLength(3), rules.maxLength(200)]),
+    grade: schema.string([rules.trim(), rules.minLength(3), rules.maxLength(200)]),
+    education_level_identifier: schema.string([rules.trim()]),
     start_date: schema.date({ format: 'yyyy-MM-dd' }),
     end_date: schema.date.nullable({ format: 'yyyy-MM-dd' }),
     is_completed: schema.enum(this.refs.isCompleted),
-    additional_info: schema.string.nullable([rules.trim(), rules.minLength(3), rules.maxLength(200)])
+    additional_info: schema.string.nullable([
+      rules.trim(),
+      rules.minLength(3),
+      rules.maxLength(200),
+    ]),
   })
   public messages: CustomMessages = {
     'school_name.required': 'School Name is required',
@@ -35,6 +39,6 @@ export default class CreateUserEducationValidator {
     'additional_info.required': 'Additional Information is required',
     'additional_info.minLength': 'Additional Information must be at least 3 characters',
     'additional_info.maxLength': 'Additional Information must be less than 200 characters',
-    'education_level_identifier.required': 'Education Level is required'
+    'education_level_identifier.required': 'Education Level is required',
   }
 }
