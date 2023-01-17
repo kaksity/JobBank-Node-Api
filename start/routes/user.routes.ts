@@ -14,6 +14,6 @@ Route.group(function () {
   Route.resource('/educations', 'UserEducationsController')
   Route.resource('/qualification-documents', 'UserQualificationDocumentsController')
 })
-  .middleware(['auth'])
+  .middleware(['auth', 'user'])
   .prefix('/api/v1/users')
   .namespace('App/Controllers/Http/V1/User')

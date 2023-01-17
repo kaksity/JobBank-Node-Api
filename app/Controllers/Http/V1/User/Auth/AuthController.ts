@@ -21,10 +21,15 @@ import { NULL_OBJECT } from 'App/Helpers/GeneralPurpose/CustomMessages/GenericMe
 import NotFoundException from 'App/Exceptions/NotFoundException'
 import BadRequestException from 'App/Exceptions/BadRequestException'
 import Hash from '@ioc:Adonis/Core/Hash'
+import RoleService from 'App/Services/RoleService'
 
 @inject()
 export default class AuthController {
-  constructor(private userService: UserService, private profileService: ProfileService) {}
+  constructor(
+    private userService: UserService,
+    private profileService: ProfileService,
+    private roleService: RoleService
+  ) {}
   public async register({ request, response, auth }: HttpContextContract) {
     await request.validate(RegisterValidator)
 
@@ -43,15 +48,18 @@ export default class AuthController {
       throw new AlreadyExistException(USER_ALREADY_EXIST)
     }
 
+    const userRole = await this.roleService.getRoleSystemUser()
+
     //Create a new user
     const userCreationOptions: Partial<UserObjectInterface> = {
       emailAddress,
       password,
       lastLoginDate: DateTime.now(),
+      roleId: userRole?.id,
     }
+
     await Database.transaction(async (transaction) => {
       userCreationOptions.transaction = transaction
-
       user = await this.userService.createUserRecord(userCreationOptions)
       const profileCreationOption: Partial<ProfileObjectInterface> = {
         userId: user.id,

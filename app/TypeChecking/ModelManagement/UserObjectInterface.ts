@@ -5,12 +5,15 @@ interface UserObjectInterface {
   /**
    * User Internal Primary Key
    */
-  id: string
+  id: number
   /**
    * User Email Address
    */
   emailAddress: string
-
+  /**
+   * User Role Id
+   */
+  roleId: number
   /**
    * User Password
    */

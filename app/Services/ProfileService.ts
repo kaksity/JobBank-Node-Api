@@ -101,13 +101,16 @@ export default class ProfileService {
     }
   }
   public async getProfileByUserIdentifier(userIdentifier: string): Promise<Profile | null> {
-    const profile = await Profile.query().whereHas('user', (userQuery) => {
-      userQuery.where('identifier', userIdentifier).where('is_deleted', false)
-    }).preload('lga').first()
-    
+    const profile = await Profile.query()
+      .whereHas('user', (userQuery) => {
+        userQuery.where('identifier', userIdentifier).where('is_deleted', false)
+      })
+      .preload('lga')
+      .first()
+
     if (profile === NULL_OBJECT) {
       return NULL_OBJECT
     }
-    return profile    
+    return profile
   }
 }

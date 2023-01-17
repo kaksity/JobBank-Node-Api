@@ -22,11 +22,11 @@ export default class FileSystemMediaUploadDriver implements MediaUploadInterface
     }
   }
 
-  uploadToDisk: Function = this._processUploadToDisk
+  public uploadToDisk: Function = this._processUploadToDisk
 
-  uploadToCloud: Function = this._processUploadToCloud
+  public uploadToCloud: Function = this._processUploadToCloud
 
-  upload: Function = this._processUploadToDiskOrCloud
+  public upload: Function = this._processUploadToDiskOrCloud
 
-  currentProvider: string
+  public currentProvider: string
 }

@@ -7,7 +7,6 @@ Route.group(function () {
   .prefix('/api/v1/admin/auth')
   .namespace('App/Controllers/Http/V1/Admin/Auth')
 
-
 Route.group(function () {
   Route.resource('/users', 'UsersController')
   Route.resource('/users/:userId/profiles', 'UserProfilesController')
@@ -16,6 +15,6 @@ Route.group(function () {
   Route.resource('/users/:userId/skill-sets', 'UserSkillSetsController')
   Route.resource('/users/:userId/educations', 'UserEducationsController')
 })
-  .middleware(['auth'])
+  .middleware(['auth', 'admin'])
   .prefix('/api/v1/admin')
   .namespace('App/Controllers/Http/V1/Admin')
