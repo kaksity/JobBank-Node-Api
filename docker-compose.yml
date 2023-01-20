@@ -17,17 +17,17 @@ services:
       - yarn
       - dev
 
-  postgres:
+  mysql:
     container_name: job_bank_db
-    image: postgres:12-alpine
+    image: 'mysql/mysql-server:8.0'
     volumes:
-      - postgres_volume:/var/lib/postgresql/data
-      - ./dockerConfig/postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql # will setup dev database adonis_app for us
+      - mysql_volume:/var/lib/mysql/data
+      - ./dockerConfig/mysql-dev-init.sql:/docker-entrypoint-initdb.d/init.sql # will setup dev database adonis_app for us
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
     ports:
-      - 5432:5432
+      - 3306:3306
 
   redis:
     container_name: job_bank_redis
@@ -38,5 +38,5 @@ services:
       - 6379:6379
 
 volumes:
-  postgres_volume:
+  mysql_volume:
   redis_volume:
