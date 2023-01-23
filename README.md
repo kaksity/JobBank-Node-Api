@@ -1,32 +1,17 @@
-### NODE COMMERCE
-
+# Job Bank Node Api
 ___
 
-### Installation
 
----
+## Quick Start
 
-#### Clone this repository
-
-```
-git clone
-```
-
-#### Setup project locally
-
-```
-cd
-cp .env.example .env
-yarn install
-yarn dev
-```
-
-#### Run project in docker
-
-```
-docker-compose build
+```bash
+# Run in Docker
 docker-compose up
-docker-compose up -d
-make build
-```
+# use -d flag to run in background
+
+# Tear down
+docker-compose down
+
+# To re-build
+docker-compose build
 
